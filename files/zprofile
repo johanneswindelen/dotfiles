@@ -1,0 +1,3 @@
+# Load env variables
+source ~/.config/zsh/env.zsh
+
