@@ -5,13 +5,13 @@ source ~/.config/zsh/ps1.zsh
 source ~/.config/zsh/alias.zsh
 
 # Load keyboard shortcuts
-source ~/.config/zsh/keys.zsh
+# source ~/.config/zsh/keys.zsh
 
 # Load zsh options
 source ~/.config/zsh/setopt.zsh
 
 # Autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 
 # Completion and ls colors
