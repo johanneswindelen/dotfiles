@@ -33,15 +33,13 @@ vcs() {
 }
 
 returns() {
-    local code
     if [ $? -eq 0 ]; then
-        code=$(colored " ✓ " 10 22)
-	echo $code
+        str=" $? ✓ "
+	echo $(colored $str 10 22)
     else
-        code=$(colored "𐄂%? " 9 52)
-	echo ${(l:4:)code}
+        str=" $? × "
+	echo $(colored $str 9 52)
     fi
-    echo ${(l:4:)code}	
 }
 
 path() {
