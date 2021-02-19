@@ -18,14 +18,12 @@ git clone --quiet https://github.com/lookingfortrees/dotfiles $DDIR > /dev/null
 
 echo "Installing tmux..."
 install "tmux"
-mkdir -p ~/.config/tmux
 ln --force $DDIR/files/tmux.conf ~/.tmux.conf
 ln --force $DDIR/files/tmux.conf.local ~/.tmux.conf.local
 
 echo "Installing vim..."
 install "vim"
-mkdir -p ~/.config/vim
-# ln $DDIR/files/vim ~/.config/vim
+ln $DDIR/files/vimrc ~/.vimrc
 
 echo "Installing zsh..."
 install "zsh zsh-autosuggestions"

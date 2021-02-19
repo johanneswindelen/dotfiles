@@ -1,0 +1,16 @@
+let mapleader = "''"
+
+syntax on
+set number
+set noswapfile
+set hlsearch
+set ignorecase
+set incsearch
+
+" required for rust plugin
+filetype plugin indent on
+
+set noexpandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
