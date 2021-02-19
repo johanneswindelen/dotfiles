@@ -11,7 +11,11 @@ source ~/.config/zsh/alias.zsh
 source ~/.config/zsh/setopt.zsh
 
 # Autosuggestions
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -d /usr/share/zsh-autosuggestions ]; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [ -d /usr/local/share/zsh-autosuggestions ]; then
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 
 # Completion and ls colors
