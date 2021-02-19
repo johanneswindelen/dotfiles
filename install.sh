@@ -27,6 +27,7 @@ ln $DDIR/files/vimrc ~/.vimrc
 
 echo "Installing zsh..."
 install "zsh zsh-autosuggestions"
+mkdir -p ~/.config
 ln --force -s $DDIR/files/zsh ~/.config/
 ln --force $DDIR/files/zshrc ~/.zshrc
 
