@@ -8,7 +8,7 @@ function install {
             sudo apt-get install -y $1 > /dev/null
 	    ;;
 	darwin*)
-            brew install -y $1 > /dev/null
+            brew install $1 > /dev/null
 	    ;;
     esac
 }
