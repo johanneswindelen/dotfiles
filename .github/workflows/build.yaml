@@ -40,4 +40,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run install script on Mac
-        run: sudo /bin/bash -c "$GITHUB_WORKSPACE/install.sh"
+        run: /bin/bash -c "$GITHUB_WORKSPACE/install.sh"
