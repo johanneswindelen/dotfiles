@@ -3,8 +3,14 @@
 set -e
 
 function install {
-	# dpkg-query -l zsh 2>&1 |  awk '/no package found /{c++}END{print a}' > /dev/null && return
-	sudo apt-get install -y $1 > /dev/null 2>&1
+    case $OSTYPE in
+        linux*)
+            sudo apt-get install -y $1 > /dev/null
+	    ;;
+	darwin*)
+            brew install -y $1 > /dev/null
+	    ;;
+    esac
 }
 
 
