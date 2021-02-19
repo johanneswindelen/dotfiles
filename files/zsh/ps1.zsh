@@ -1,4 +1,5 @@
 # set a color, if it already exists add a separator
+# https://jonasjacek.github.io/colors/
 colored() {
     local text="$1"
     local fg="$2"
@@ -6,45 +7,6 @@ colored() {
 
     # Create full ANSII format with color reset
     echo "%{\e[38;5;${fg};48;5;${bg}m%}$1%{\e[0m%}"
-}
-
-# Current directory structure
-current_path() {
-    # Actually one less
-    local max_dir_len=15
-    local max_dirs=3
-
-    # Get current path
-    local pwd=$(pwd)
-    local output_path=""
-    if [[ "$(pwd)" == "/home/$USER"* ]]; then
-        local pwd=$(echo $pwd | sed 's/^\/home\/'$USER'//')
-        local output_path="~"
-    fi
-
-    # Convert path to an array
-    local array=("${(ps:/:)pwd}")
-
-    # Shorten each element in the list
-    local short_array=()
-    for elem in "${array[@]}"; do
-        local short_elem=$(echo $elem | head -c $max_dir_len | sed 's/./…/'$max_dir_len)
-        short_array+=("$short_elem")
-    done
-
-    # Take only the last $max_dirs elements
-    if [[ "$((${#short_array[@]} - 1))" -gt "$max_dirs" ]]; then
-        local offset=$((${#short_array[@]} - $max_dirs))
-        local short_array=("${short_array[@]:$offset:$max_dirs}")
-        output_path+="/…/"
-    fi
-
-    # Reconstruct the path from the shortened list
-    function join_by { local IFS="$1"; shift; echo "$*"; }
-    local joined_array=$(join_by "/" "${short_array[@]}")
-    local output_path="$output_path$joined_array"
-
-    echo $(colored " $output_path " 7 8)
 }
 
 # Current version control status
@@ -64,35 +26,29 @@ vcs() {
 
     # Get color based on directory status
     if [[ -n $(git status --porcelain) ]]; then
-        echo $(colored " $branch$push " 0 9)
+        echo $(colored " ($branch$push)" 9 0)
     else
-        echo $(colored " $branch$push " 0 10)
+    	echo $(colored " ($branch$push)" 10 0)
     fi
 }
 
-# Current user
-current_user() {
-    # Set background based on vi mode
-    if [[ "$KEYMAP" == "vicmd" ]]; then
-        local bg=1
+returns() {
+    local code
+    if [ $? -eq 0 ]; then
+        code=$(colored " ✓ " 10 22)
+	echo $code
     else
-        local bg=9
+        code=$(colored "𐄂%? " 9 52)
+	echo ${(l:4:)code}
     fi
-
-    if [[ "$USER" == "root" ]]; then
-        echo $(colored ' R! ' 0 $bg)
-    else
-        echo $(colored ' UL ' 0 $bg)
-    fi
+    echo ${(l:4:)code}	
 }
 
-function precmd {
-    PS1="$(current_user)$(current_path)$(vcs) "
+path() {
+    echo $(colored " %5~ " 15 232)
 }
 
-function zle-line-init zle-keymap-select {
-    precmd
-    zle reset-prompt
+precmd() {
+    PROMPT="$(returns)$(path)$(vcs) %# "
 }
-zle -N zle-line-init
-zle -N zle-keymap-select
+
