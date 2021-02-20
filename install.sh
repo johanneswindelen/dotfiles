@@ -42,4 +42,4 @@ mkdir -p ~/.ssh
 # ln -s $DDIR/files/sshconfig ~/.ssh/config
 
 echo "Setting shell to zsh..."
-chsh -s $(which zsh) $(whoami)
+sudo chsh -s $(which zsh) $(whoami)
