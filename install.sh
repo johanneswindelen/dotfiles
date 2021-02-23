@@ -24,10 +24,10 @@ function update_pkgs {
 function install_pkg {
     case $OSTYPE in
         linux*)
-            sudo apt-get install_pkg -y $1 > /dev/null
+            sudo apt-get install -y $1 > /dev/null
 	    ;;
 	darwin*)
-            HOMEBREW_NO_AUTO_UPDATE=1 brew install_pkg -q $1 > /dev/null
+            HOMEBREW_NO_AUTO_UPDATE=1 brew install -q $1 > /dev/null
 	    ;;
     esac
 }
