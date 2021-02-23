@@ -4,11 +4,19 @@ Setting up a new laptop/desktop/server/docker? These dot files make it easy brea
 
 ## Quickstart
 
-Make sure to have `curl` or `wget` installed. Then,
+__Mac only__: install homebrew:
 
-`/bin/bash -c "$(wget -qO - https://raw.githubusercontent.com/lookingfortrees/dotfiles/master/install.sh)"`
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
-or
+Then, make sure to install `curl`:
+
+`apt-get update && apt-get install curl`
+
+or 
+
+`brew install curl`
+
+followed by:
 
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lookingfortrees/dotfiles/master/install.sh)"`
 
