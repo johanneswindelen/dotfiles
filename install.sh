@@ -24,12 +24,32 @@ function update_pkgs {
 function install_pkg {
     case $OSTYPE in
         linux*)
-            sudo apt-get install -y $1 > /dev/null
-	    ;;
-	darwin*)
-            HOMEBREW_NO_AUTO_UPDATE=1 brew install -q $1 > /dev/null
+	        install_pkg_debian $1
+        ;;
+        darwin*)
+            install_pkg_mac $1
 	    ;;
     esac
+}
+
+function install_pkg_mac {
+    if brew ls --versions "$1" >/dev/null; then
+        HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade -q "$1" > /dev/null
+    else
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install -q "$1" > /dev/null
+    fi
+}
+
+function install_pkg_debian {
+    if [[ $OSTYPE == "linux"* ]]; then
+        sudo apt-get install -y $1 > /dev/null
+    fi
+}
+
+function run_debian {
+    if [[ $OSTYPE == "linux"* ]]; then
+        eval $1
+    fi
 }
 
 echo "Updating package list"
@@ -56,14 +76,24 @@ install_pkg "vim"
 ln -f $REPODIR/files/vimrc ~/.vimrc
 
 echo "Installing zsh..."
-install_pkg "zsh zsh-autosuggestions"
+install_pkg "zsh"
 mkdir -p ~/.config
 ln -sf $REPODIR/files/zsh ~/.config
 ln -f $REPODIR/files/zshrc ~/.zshrc
 
-echo "Installinging ssh..."
-mkdir -p ~/.ssh
-# ln -s $REPODIR/files/sshconfig ~/.ssh/config
+echo "Installing utilities (fd, rgrep, starship, exa, bat)"
+install_pkg_mac "fd"
+install_pkg_debian "fd-find"
+install_pkg "exa"
+install_pkg "ripgrep"
+install_pkg "bat"
+
+curl -fsSL https://starship.rs/install.sh | bash -s -- -y > /dev/null
+
+# make commands available under expected name on debian
+run_debian "mkdir -p ~/.local/bin"
+run_debian "ln -s $(which fdfind) ~/.local/bin/fd"
+run_debian "ln -s /usr/bin/batcat ~/.local/bin/bat"
 
 echo "Setting shell to zsh..."
 sudo chsh -s $(which zsh) $(whoami)
