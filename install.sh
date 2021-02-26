@@ -33,10 +33,12 @@ function install_pkg {
 }
 
 function install_pkg_mac {
-    if brew ls --versions "$1" >/dev/null; then
-        HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade -q "$1" > /dev/null
-    else
-        HOMEBREW_NO_AUTO_UPDATE=1 brew install -q "$1" > /dev/null
+    if [[ $OSTYPE == "darwin"* ]]; then
+        if brew ls --versions "$1" >/dev/null; then
+            HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade -q "$1" > /dev/null
+        else
+            HOMEBREW_NO_AUTO_UPDATE=1 brew install -q "$1" > /dev/null
+        fi
     fi
 }
 
