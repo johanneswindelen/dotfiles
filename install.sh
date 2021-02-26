@@ -84,6 +84,8 @@ ln -sf $REPODIR/files/zsh ~/.config
 ln -f $REPODIR/files/zshrc ~/.zshrc
 
 echo "Installing utilities (fd, rgrep, starship, exa, bat)"
+run_debian "mkdir -p ~/.local/bin"
+
 install_pkg_mac "fd"
 install_pkg_debian "fd-find"
 install_pkg_mac "exa"
@@ -95,7 +97,6 @@ install_pkg "bat"
 curl -fsSL https://starship.rs/install.sh | bash -s -- -y > /dev/null
 
 # make commands available under expected name on debian
-run_debian "mkdir -p ~/.local/bin"
 run_debian "ln -s $(which fdfind) ~/.local/bin/fd"
 run_debian "ln -s /usr/bin/batcat ~/.local/bin/bat"
 
