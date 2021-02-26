@@ -88,7 +88,7 @@ install_pkg_mac "fd"
 install_pkg_debian "fd-find"
 install_pkg_mac "exa"
 install_pkg_debian "unzip"
-run_debian "curl -L -o exa.zip https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip && unzip exa.zip && mv exa* ~/.local/bin/exa"
+run_debian "curl -L -o exa.zip https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip && unzip exa.zip && mv exa-linux-x86_64 ~/.local/bin/exa"
 install_pkg "ripgrep"
 install_pkg "bat"
 
