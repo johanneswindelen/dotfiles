@@ -7,10 +7,12 @@ set hlsearch
 set ignorecase
 set incsearch
 
+set backspace=indent,eol,start
+
 " required for rust plugin
 filetype plugin indent on
 
-set noexpandtab
+set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
