@@ -13,10 +13,10 @@ function update_pkgs {
     case $OSTYPE in
         linux*)
             sudo apt-get update > /dev/null
-	    ;;
-	darwin*)
+        ;;
+        darwin*)
             brew update > /dev/null
-	    ;;
+        ;;
     esac
 }
 
@@ -24,11 +24,11 @@ function update_pkgs {
 function install_pkg {
     case $OSTYPE in
         linux*)
-	        install_pkg_debian $1
+            install_pkg_debian $1
         ;;
         darwin*)
             install_pkg_mac $1
-	    ;;
+        ;;
     esac
 }
 
@@ -93,7 +93,7 @@ install_pkg_debian "unzip"
 run_debian "curl -L -o exa.zip https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip > /dev/null && unzip exa.zip > /dev/null && mv exa-linux-x86_64 ~/.local/bin/exa"
 install_pkg_mac "ripgrep"
 install_pkg_mac "bat"
-run_debian "sudo apt-get install -o Dpkg::Options::='--force-overwrite' bat ripgrep > /dev/null"
+run_debian "sudo apt-get install -y -o Dpkg::Options::='--force-overwrite' bat ripgrep > /dev/null"
 
 curl -fsSL https://starship.rs/install.sh | bash -s -- -y > /dev/null
 
