@@ -93,7 +93,7 @@ install_pkg_debian "unzip"
 run_debian "curl -L -o exa.zip https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip > /dev/null && unzip exa.zip > /dev/null && mv exa-linux-x86_64 ~/.local/bin/exa"
 install_pkg_mac "ripgrep"
 install_pkg_mac "bat"
-run_debian "apt install -o Dpkg::Options::='--force-overwrite' bat ripgrep > /dev/null"
+run_debian "sudo apt-get install -o Dpkg::Options::='--force-overwrite' bat ripgrep > /dev/null"
 
 curl -fsSL https://starship.rs/install.sh | bash -s -- -y > /dev/null
 
