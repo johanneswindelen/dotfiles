@@ -90,7 +90,7 @@ install_pkg_mac "fd"
 install_pkg_debian "fd-find"
 install_pkg_mac "exa"
 install_pkg_debian "unzip"
-run_debian "curl -L -o exa.zip https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip > /dev/null && unzip exa.zip > /dev/null && mv exa-linux-x86_64 ~/.local/bin/exa"
+run_debian "curl -L -o exa.zip https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip > /dev/null && unzip exa.zip > /dev/null && mv exa-linux-x86_64 ~/.local/bin/exa && rm ~/exa.zip"
 install_pkg_mac "ripgrep"
 install_pkg_mac "bat"
 run_debian "sudo apt-get install -y -o Dpkg::Options::='--force-overwrite' bat ripgrep > /dev/null"
@@ -99,7 +99,7 @@ curl -fsSL https://starship.rs/install.sh | bash -s -- -y > /dev/null
 
 # make commands available under expected name on debian
 run_debian "ln -s $(which fdfind) ~/.local/bin/fd"
-run_debian "ln -s /usr/bin/batcat ~/.local/bin/bat"
+run_debian "ln -s $(which batcat) ~/.local/bin/bat"
 
 echo "Setting shell to zsh..."
 sudo chsh -s $(which zsh) $(whoami)
