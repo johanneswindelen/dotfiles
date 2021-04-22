@@ -18,6 +18,6 @@ or
 
 followed by:
 
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/lookingfortrees/dotfiles/master/install.sh)"`
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/johanneswindelen/dotfiles/master/install.sh)"`
 
 Start `$ zsh` and you're good to go!
